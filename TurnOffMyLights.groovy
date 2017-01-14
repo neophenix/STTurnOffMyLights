@@ -60,7 +60,7 @@ def checkMotion() {
             def states = it.statesBetween("motion", since, new Date())
 
             // Look at all the returned states and if we see an active one, set our lastMotion to that to compare later
-                states.find {
+            states.find {
                 motion = it.stringValue
                 def epoch = it.date.getTime()
                 debug("${it.displayName} motion was ${motion} on ${epoch}")
@@ -79,7 +79,7 @@ def checkMotion() {
         def diffMins = (cal.getTimeInMillis() - lastMotion) / 60000
         debug("minutes since motion ${diffMins}")
         if (diffMins >= minutes) {
-               // look at each light, if it is on, turn it off
+            // look at each light, if it is on, turn it off
             lights.each {
                 if (it.currentValue("switch") == "on") {
                     debug("turning off ${it.displayName}")
